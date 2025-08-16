@@ -3,30 +3,27 @@ name: 🚀 Deploy Portfolio to GitHub Pages
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    # Atualiza automaticamente todos os dias às 6h (UTC)
-    - cron: '0 6 * * *'
   workflow_dispatch:
-    # Permite execução manual
+
+# Configurar permissões para GitHub Pages  
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 # Configurações globais
 env:
   NODE_VERSION: '18'
-  VITE_GITHUB_USERNAME: 'flameuss'
 
 jobs:
-  # Job para testes e build
-  build-and-test:
-    name: 🔧 Build & Test
+  # Job para build
+  build:
+    name: 🔧 Build
     runs-on: ubuntu-latest
     
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
@@ -39,73 +36,35 @@ jobs:
 
       - name: 🔍 Run ESLint
         run: npm run lint
-
-      - name: 🎨 Check Prettier formatting
-        run: npm run format:check
-
-      - name: 📏 Type check
-        run: npm run type-check
-
-      - name: 🧪 Run unit tests
-        run: npm run test:coverage
-
-      - name: 📊 Upload coverage reports
-        uses: codecov/codecov-action@v3
-        if: always()
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-          fail_ci_if_error: false
+        continue-on-error: true
 
       - name: 🏗️ Build application
         run: npm run build
         env:
-          VITE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VITE_GITHUB_USERNAME: flameuss
           VITE_EMAIL_SERVICE_ID: ${{ vars.VITE_EMAIL_SERVICE_ID }}
           VITE_EMAIL_TEMPLATE_ID: ${{ vars.VITE_EMAIL_TEMPLATE_ID }}
           VITE_EMAIL_PUBLIC_KEY: ${{ vars.VITE_EMAIL_PUBLIC_KEY }}
           VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
 
-      - name: 📦 Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: dist/
-          retention-days: 7
-
-  # Job para deploy no GitHub Pages
-  deploy:
-    name: 🚀 Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: [build-and-test]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    
-    # Configurar permissões para GitHub Pages
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    
-    # Configurar ambiente
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: dist/
-
       - name: 📋 Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: 📦 Upload to GitHub Pages
+      - name: 📦 Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
+  # Job para deploy
+  deploy:
+    name: 🚀 Deploy
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

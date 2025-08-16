@@ -30,11 +30,14 @@ const PageLoader: React.FC = () => (
 
 // Main App Component
 const App: React.FC = () => {
+  // Get base URL from Vite config
+  const basename = import.meta.env.PROD ? '/dev-qa-portfolio' : '/'
+  
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <GitHubProvider>
-          <Router basename={import.meta.env.PROD ? '/dev-qa-portfolio' : '/'}>
+          <Router basename={basename}>
             <div className="flex min-h-screen flex-col bg-white transition-colors duration-300 dark:bg-gray-950">
               {/* Navigation */}
               <Navbar />

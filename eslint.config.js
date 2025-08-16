@@ -122,6 +122,12 @@ export default [
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
       'no-unused-vars': 'off', // Using TypeScript version
       'no-undef': 'off', // TypeScript handles this
+      
+      // Additional rules for better compatibility
+      'prefer-const': 'error',
+      'no-var': 'error',
+      'object-shorthand': 'error',
+      'prefer-arrow-callback': 'error',
     },
   },
   {
