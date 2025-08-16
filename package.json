@@ -1,0 +1,124 @@
+{
+  "name": "dev-qa-portfolio",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Portfolio profissional de Luis Henrique - Analista QA especializado em automação de testes",
+  "author": {
+    "name": "Luis Henrique da Silva Campos",
+    "email": "luis.henrique_campos@outlook.com.br",
+    "url": "https://github.com/flameuss"
+  },
+  "homepage": "https://flameuss.github.io/dev-qa-portfolio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flameuss/dev-qa-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript",
+    "motion",
+    "github-api",
+    "tailwindcss",
+    "developer",
+    "qa",
+    "testing"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "docker:dev": "docker-compose up -d",
+    "docker:build": "docker build -f docker/Dockerfile.prod -t portfolio .",
+    "prepare": "husky install",
+    "analyze": "vite-bundle-analyzer",
+    "upgrade:motion": "npm uninstall framer-motion && npm install motion",
+    "security:check": "npm audit",
+    "clean": "rm -rf node_modules package-lock.json && npm install"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.1.8",
+    "@tailwindcss/typography": "^0.5.16",
+    "axios": "^1.7.7",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "motion": "^12.0.0",
+    "lucide-react": "^0.447.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-router-dom": "^6.26.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.0",
+    "@playwright/test": "^1.47.2",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.12",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6",
+    "vite-bundle-analyzer": "^0.11.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
