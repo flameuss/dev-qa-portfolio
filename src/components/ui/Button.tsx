@@ -30,8 +30,19 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const buttonProps = { ...props }
-  delete (buttonProps as any).onDrag
+  // Remove motion-specific props to avoid conflicts
+  const {
+    onDrag,
+    onDragStart,
+    onDragEnd,
+    onDragEnter,
+    onDragExit,
+    onDragLeave,
+    onDragOver,
+    onDrop,
+    draggable,
+    ...buttonProps
+  } = props as any
   
   return (
     <motion.button
