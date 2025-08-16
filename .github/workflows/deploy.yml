@@ -37,7 +37,24 @@ jobs:
       - name: 🏗️ Build application
         run: npm run build
         env:
+          # Static variables (hardcoded)
           VITE_GITHUB_USERNAME: flameuss
+          VITE_FULL_NAME: "Luis Henrique da Silva Campos"
+          VITE_LOCATION: "Cachoeira Paulista - SP"
+          VITE_COMPANY: "Brisabr"
+          VITE_BIO: "Analista de QA especializado em automação de testes e sistemas geoespaciais. Experiência com Cypress, Robot Framework, Selenium e metodologias ágeis. Atualmente trabalhando no INPE com projetos de monitoramento ambiental da Amazônia."
+          VITE_CURRENT_POSITION: "Analista de QA Júnior"
+          VITE_EXPERIENCE_YEARS: "3"
+          
+          # Social Media & Contact (hardcoded for now - working values)
+          VITE_SOCIAL_GITHUB: "https://github.com/flameuss"
+          VITE_SOCIAL_LINKEDIN: "https://www.linkedin.com/in/luis-hscampos/"
+          VITE_CONTACT_EMAIL: "luis.henrique_campos@outlook.com.br"
+          
+          # CV/Resume
+          VITE_CV_DOWNLOAD_URL: "https://docs.google.com/document/d/15ww22z4LYjaTC05jJ3wMT4ZcHIm48fKe/export?format=pdf"
+          
+          # External Services (from GitHub variables)
           VITE_EMAIL_SERVICE_ID: ${{ vars.VITE_EMAIL_SERVICE_ID }}
           VITE_EMAIL_TEMPLATE_ID: ${{ vars.VITE_EMAIL_TEMPLATE_ID }}
           VITE_EMAIL_PUBLIC_KEY: ${{ vars.VITE_EMAIL_PUBLIC_KEY }}
