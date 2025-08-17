@@ -59,6 +59,10 @@ jobs:
           VITE_EMAIL_TEMPLATE_ID: ${{ vars.VITE_EMAIL_TEMPLATE_ID }}
           VITE_EMAIL_PUBLIC_KEY: ${{ vars.VITE_EMAIL_PUBLIC_KEY }}
           VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
+          
+          # Sensitive data (from GitHub secrets)
+          VITE_GOOGLE_DRIVE_API_KEY: ${{ secrets.VITE_GOOGLE_DRIVE_API_KEY }}
+          VITE_GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.VITE_GOOGLE_DRIVE_FOLDER_ID }}
 
       - name: 📋 Setup Pages
         uses: actions/configure-pages@v4

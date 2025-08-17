@@ -41,6 +41,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <!-- GitHub Pages SPA Router -->
+    <script type="text/javascript">
+      // Handle GitHub Pages SPA routing - Enhanced version
+      (function(location) {
+        if (location.search[1] === '/') {
+          var decoded = location.search.slice(1).split('&').map(function(segment) { 
+            return segment.replace(/~and~/g, '&')
+          }).join('?')
+          
+          // Replace the current history entry with the decoded path
+          window.history.replaceState(null, null,
+            location.pathname.slice(0, -1) + decoded + location.hash
+          )
+        }
+      })(window.location)
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

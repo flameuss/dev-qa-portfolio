@@ -3,30 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Luis Henrique - QA</title>
-  <script type="text/javascript">
-    // Redireciona para o index.html com o path como query string
-    // Isso é necessário para SPAs no GitHub Pages
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
-          return s.replace(/~and~/g, '&')
-        }).join('?')
-        window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-        )
-      }
-    }(window.location))
-  </script>
+  <title>Redirecionando... - Portfolio Luis Henrique</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 400px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+    .debug {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div id="root">
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
-      <div style="text-align: center;">
-        <h1>🔄 Redirecionando...</h1>
-        <p>Aguarde enquanto carregamos o portfolio</p>
-      </div>
-    </div>
+  <div class="container">
+    <div class="spinner"></div>
+    <h1>Redirecionando...</h1>
+    <p>Aguarde enquanto carregamos o portfólio</p>
+    <div class="debug" id="debug"></div>
   </div>
+  
+  <script type="text/javascript">
+    // GitHub Pages SPA Router - More robust version
+    (function() {
+      var location = window.location;
+      var debug = document.getElementById('debug');
+      
+      // Debug info (uncomment for debugging)
+      // debug.style.display = 'block';
+      // debug.innerHTML = 'Current path: ' + location.pathname + '<br>Search: ' + location.search + '<br>Hash: ' + location.hash;
+      
+      // Extract the path after the base path
+      var basePath = '/dev-qa-portfolio';
+      var currentPath = location.pathname;
+      var routePath = '';
+      
+      // If we're already at the base path, do nothing
+      if (currentPath === basePath || currentPath === basePath + '/') {
+        window.location.href = basePath + '/';
+        return;
+      }
+      
+      // Extract route path
+      if (currentPath.startsWith(basePath)) {
+        routePath = currentPath.substring(basePath.length);
+      } else {
+        routePath = currentPath;
+      }
+      
+      // Clean up route path
+      if (routePath.startsWith('/')) {
+        routePath = routePath.substring(1);
+      }
+      
+      // Build the new URL with query parameter for React Router
+      var newUrl = basePath + '/?/' + routePath;
+      if (location.search) {
+        newUrl += '&' + location.search.substring(1);
+      }
+      if (location.hash) {
+        newUrl += location.hash;
+      }
+      
+      // Redirect
+      window.location.replace(newUrl);
+    })();
+  </script>
 </body>
 </html>

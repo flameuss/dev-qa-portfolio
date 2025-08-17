@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 
 // Contexts
@@ -13,11 +13,13 @@ import { Footer } from '@components/layout/Footer'
 import { ScrollToTop } from '@components/common/ScrollToTop'
 import { LoadingSpinner } from '@components/ui/LoadingSpinner'
 import { ErrorBoundary } from '@components/common/ErrorBoundary'
+import { AppRouter } from '@components/router/AppRouter'
 
 // Pages (Lazy Loading)
 const Home = React.lazy(() => import('@/pages/Home'))
 const About = React.lazy(() => import('@/pages/About'))
 const Projects = React.lazy(() => import('@/pages/Projects'))
+const Certificates = React.lazy(() => import('@/pages/Certificates'))
 const Contact = React.lazy(() => import('@/pages/Contact'))
 const NotFound = React.lazy(() => import('@/pages/NotFound'))
 
@@ -30,14 +32,11 @@ const PageLoader: React.FC = () => (
 
 // Main App Component
 const App: React.FC = () => {
-  // Get base URL from Vite config
-  const basename = import.meta.env.PROD ? '/dev-qa-portfolio' : '/'
-  
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <GitHubProvider>
-          <Router basename={basename}>
+          <AppRouter>
             <div className="flex min-h-screen flex-col bg-white transition-colors duration-300 dark:bg-gray-950">
               {/* Navigation */}
               <Navbar />
@@ -50,6 +49,7 @@ const App: React.FC = () => {
                       <Route path="/" element={<Home />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/projects" element={<Projects />} />
+                      <Route path="/certificates" element={<Certificates />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
@@ -63,7 +63,7 @@ const App: React.FC = () => {
               {/* Utility Components */}
               <ScrollToTop />
             </div>
-          </Router>
+          </AppRouter>
         </GitHubProvider>
       </ThemeProvider>
     </ErrorBoundary>
