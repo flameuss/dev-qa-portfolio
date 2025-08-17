@@ -23,8 +23,8 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
   const [imageError, setImageError] = useState<string | undefined>(undefined)
 
   // Extract file ID from various Google Drive URL formats
-  const extractFileId = (url: string | undefined): string | null => {
-    if (!url) return null
+  const extractFileId = (url: string | undefined): string | undefined => {
+    if (!url) return undefined
     
     const patterns = [
       /\/d\/([a-zA-Z0-9-_]+)/,
@@ -37,7 +37,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
       if (match) return match[1]
     }
     
-    return null
+    return undefined
   }
 
   // Generate multiple URL variations for better compatibility
