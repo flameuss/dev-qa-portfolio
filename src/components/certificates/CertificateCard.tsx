@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import { Calendar, MapPin, FolderOpen, Award, ExternalLink, Download, Clock } from 'lucide-react'
 import { Certificate } from '../../services/drive/googleDriveService'
 import { CertificateImage } from './CertificateImage'
-import { StatusBadge, Badge } from '../../components/ui'
+import { StatusBadge, Badge } from '../../components/ui/index'
 
 interface CertificateCardProps {
   certificate: Certificate
