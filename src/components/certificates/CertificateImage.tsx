@@ -20,7 +20,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
 }) => {
   const [imageStatus, setImageStatus] = useState<'loading' | 'loaded' | 'error'>('loading')
   const [currentUrl, setCurrentUrl] = useState<string | undefined>(imageUrl)
-  const [imageError, setImageError] = useState<string | null>(null)
+  const [imageError, setImageError] = useState<string | undefined>(undefined)
 
   // Extract file ID from various Google Drive URL formats
   const extractFileId = (url: string | undefined): string | null => {
@@ -90,7 +90,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
         console.log(`✅ Imagem carregada com sucesso (tentativa ${index + 1}):`, url)
         setCurrentUrl(url)
         setImageStatus('loaded')
-        setImageError(null)
+        setImageError(undefined)
         resolve()
       }
       
@@ -111,7 +111,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
     }
 
     setImageStatus('loading')
-    setImageError(null)
+    setImageError(undefined)
 
     const detectedFileId = extractFileId(imageUrl)
     
@@ -129,7 +129,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
   const handleRetry = () => {
     if (imageUrl) {
       setImageStatus('loading')
-      setImageError(null)
+      setImageError(undefined)
       
       const detectedFileId = extractFileId(imageUrl)
       const urls = generateImageUrls(imageUrl, detectedFileId)
@@ -139,7 +139,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
 
   const handleImageLoad = () => {
     setImageStatus('loaded')
-    setImageError(null)
+    setImageError(undefined)
   }
 
   const handleImageError = (error: React.SyntheticEvent<HTMLImageElement>) => {
