@@ -1,10 +1,16 @@
-# Portfolio Refactoring Log
+import React from 'react';
 
-## Files Removed
-- GoogleDriveTester.tsx (unused file with only comments)
+interface GoogleDriveTesterProps {
+  className?: string;
+}
 
-## Next Steps  
-- Create reusable UI components
-- Implement GitHub Pages SPA fix
-- Clean up unused imports
-- Improve performance
+const GoogleDriveTester: React.FC<GoogleDriveTesterProps> = ({ className = '' }) => {
+  return (
+    <div className={`google-drive-tester ${className}`}>
+      <h2>Google Drive Tester</h2>
+      <p>Componente em desenvolvimento...</p>
+    </div>
+  );
+};
+
+export default GoogleDriveTester;
