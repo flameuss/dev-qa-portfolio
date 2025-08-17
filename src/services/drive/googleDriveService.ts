@@ -66,20 +66,22 @@ class GoogleDriveService {
   }
 
   // Método para testar configuração
-  async testConfiguration(): Promise<{ success: boolean; message: string; details?: any }> {
+  async testConfiguration(): Promise<{ success: boolean; message: string; timestamp: string; details?: any }> {
     try {
       if (!this.API_KEY) {
         return {
-          success: false,
-          message: 'API Key do Google Drive não configurada'
-        }
+        success: false,
+        message: 'API Key do Google Drive não configurada',
+          timestamp: new Date().toLocaleString()
+      }
       }
 
       if (!this.FOLDER_ID) {
         return {
-          success: false,
-          message: 'ID da pasta do Google Drive não configurado'
-        }
+        success: false,
+        message: 'ID da pasta do Google Drive não configurado',
+          timestamp: new Date().toLocaleString()
+      }
       }
 
       console.log('🧪 Testando configuração do Google Drive...')
@@ -88,6 +90,7 @@ class GoogleDriveService {
       return {
         success: true,
         message: `Configuração OK - ${files.files.length} arquivos encontrados`,
+        timestamp: new Date().toLocaleString(),
         details: {
           filesFound: files.files.length,
           folderAccess: true,
@@ -101,6 +104,7 @@ class GoogleDriveService {
       return {
         success: false,
         message: `Erro na configuração: ${error.message}`,
+        timestamp: new Date().toLocaleString(),
         details: {
           error: error.response?.data || error.message,
           status: error.response?.status

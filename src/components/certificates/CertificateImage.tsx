@@ -13,9 +13,9 @@ interface CertificateImageProps {
 export const CertificateImage: React.FC<CertificateImageProps> = ({
   imageUrl,
   title,
-  fileName = '' as string | undefined,
+  fileName,
   fileType,
-  fileId = undefined as string | undefined,
+  fileId,
   className = ''
 }) => {
   const [imageStatus, setImageStatus] = useState<'loading' | 'loaded' | 'error'>('loading')
