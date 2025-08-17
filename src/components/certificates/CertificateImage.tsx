@@ -13,9 +13,9 @@ interface CertificateImageProps {
 export const CertificateImage: React.FC<CertificateImageProps> = ({
   imageUrl,
   title,
-  fileName = '',
+  fileName = '' as string | undefined,
   fileType,
-  fileId,
+  fileId = undefined as string | undefined,
   className = ''
 }) => {
   const [imageStatus, setImageStatus] = useState<'loading' | 'loaded' | 'error'>('loading')
@@ -23,7 +23,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
   const [imageError, setImageError] = useState<string | null>(null)
 
   // Extract file ID from various Google Drive URL formats
-  const extractFileId = (url: string): string | null => {
+  const extractFileId = (url: string | undefined): string | null => {
     if (!url) return null
     
     const patterns = [
@@ -42,7 +42,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
 
   // Generate multiple URL variations for better compatibility
   const generateImageUrls = (originalUrl: string, detectedFileId?: string): string[] => {
-    const id = detectedFileId || extractFileId(originalUrl) || fileId
+    const id = detectedFileId || extractFileId(originalUrl) || fileId || ''
     
     if (!id) return [originalUrl]
 
@@ -64,7 +64,7 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
 
   // Generate PDF preview URL
   const generatePDFPreviewUrl = (originalUrl: string, detectedFileId?: string): string => {
-    const id = detectedFileId || extractFileId(originalUrl) || fileId
+    const id = detectedFileId || extractFileId(originalUrl) || fileId || ''
     
     if (!id) return originalUrl
     
@@ -148,8 +148,8 @@ export const CertificateImage: React.FC<CertificateImageProps> = ({
     setImageError(`Erro ao carregar: ${currentUrl}`)
   }
 
-  const isPDF = fileType === 'pdf' || fileName.toLowerCase().endsWith('.pdf')
-  const isImage = fileType === 'image' || /\.(jpg|jpeg|png|gif|webp)$/i.test(fileName)
+  const isPDF = fileType === 'pdf' || (fileName && fileName.toLowerCase().endsWith('.pdf'))
+  const isImage = fileType === 'image' || (fileName && /\.(jpg|jpeg|png|gif|webp)$/i.test(fileName))
 
   if (!imageUrl && !currentUrl) {
     return (

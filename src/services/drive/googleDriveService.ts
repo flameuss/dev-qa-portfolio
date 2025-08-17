@@ -14,7 +14,7 @@ export interface Certificate {
   downloadUrl?: string
   fileName?: string
   fileType?: 'image' | 'pdf' | 'unknown'
-  status?: 'ativo' | 'expirado' | 'em_andamento' // Novo campo
+  status?: 'ativo' | 'expirado' | 'em_andamento' | string // Novo campo
   cargaHoraria?: string // Novo campo
   certificadora?: string // Novo campo (pode ser diferente do local)
 }
