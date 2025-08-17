@@ -149,6 +149,20 @@
   .text-shadow-lg {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+  /* Certificate Card Utilities */
+  .certificate-card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .certificate-card-height {
+    height: 420px;
+  }
 }
 
 /* ================================

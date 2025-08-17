@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [
     react(),
-    tsconfigPaths() // Plugin para resolver automaticamente os aliases do tsconfig.json
+    tsconfigPaths() // Plugin oficial para resolver paths do tsconfig.json automaticamente
   ],
   base: process.env.NODE_ENV === 'production' ? '/dev-qa-portfolio/' : '/',
   build: {

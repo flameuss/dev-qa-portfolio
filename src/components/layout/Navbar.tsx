@@ -14,6 +14,7 @@ export function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Sobre', href: '/about' },
     { name: 'Projetos', href: '/projects' },
+    { name: 'Certificados', href: '/certificates' },
     { name: 'Contato', href: '/contact' },
   ]
 

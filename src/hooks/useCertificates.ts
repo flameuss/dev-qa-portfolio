@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Certificate, googleDriveService } from '../services/drive/googleDriveService'
+import { Certificate, googleDriveService } from '@/services/drive/googleDriveService'
 
 interface UseCertificatesReturn {
   certificates: Certificate[]
@@ -38,15 +38,9 @@ export const useCertificates = (): UseCertificatesReturn => {
       setLoading(true)
       setError(null)
       
-      // Limpar cache primeiro
       googleDriveService.clearCache()
-      console.log('🗑️ Cache limpo - forçando nova busca...')
-      
-      // Buscar novamente
       const certificatesData = await googleDriveService.getCertificatesWithImages()
       setCertificates(certificatesData)
-      
-      console.log(`✅ ${certificatesData.length} certificados recarregados`)
     } catch (err) {
       console.error('Erro ao limpar cache e recarregar:', err)
       setError('Erro ao recarregar certificados')
