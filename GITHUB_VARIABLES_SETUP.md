@@ -7,17 +7,17 @@ Acesse: `Settings > Secrets and variables > Actions > Variables`
 ### ✅ Variables (Públicas - podem ser visíveis nos logs)
 
 ```
-VITE_EMAIL_SERVICE_ID=service_s5hanw1
-VITE_EMAIL_TEMPLATE_ID=template_ma8yp39
-VITE_EMAIL_PUBLIC_KEY=wZ0FhnM5TEWfZqXKJ
-VITE_WHATSAPP_NUMBER=12991848281
+VITE_EMAIL_SERVICE_ID=[SEU_EMAIL_SERVICE_ID]
+VITE_EMAIL_TEMPLATE_ID=[SEU_EMAIL_TEMPLATE_ID]
+VITE_EMAIL_PUBLIC_KEY=[SEU_EMAIL_PUBLIC_KEY]
+VITE_WHATSAPP_NUMBER=[SEU_WHATSAPP_NUMBER]
 ```
 
 ### 🔒 Secrets (Privados - não aparecem nos logs)
 
 ```
-VITE_GOOGLE_DRIVE_API_KEY=AIzaSyA5dmJGZUs3e2RB2YLaI5xiLh7NLwInp9A
-VITE_GOOGLE_DRIVE_FOLDER_ID=1ehYbUfiMs8s_7lir8-hZJc7MEfwj-hiV
+VITE_GOOGLE_DRIVE_API_KEY=[SUA_GOOGLE_DRIVE_API_KEY]
+VITE_GOOGLE_DRIVE_FOLDER_ID=[SUA_GOOGLE_DRIVE_FOLDER_ID]
 ```
 
 ## Como configurar:
@@ -29,10 +29,10 @@ VITE_GOOGLE_DRIVE_FOLDER_ID=1ehYbUfiMs8s_7lir8-hZJc7MEfwj-hiV
 
 | Nome | Valor |
 |------|--------|
-| `VITE_EMAIL_SERVICE_ID` | `service_s5hanw1` |
-| `VITE_EMAIL_TEMPLATE_ID` | `template_ma8yp39` |
-| `VITE_EMAIL_PUBLIC_KEY` | `wZ0FhnM5TEWfZqXKJ` |
-| `VITE_WHATSAPP_NUMBER` | `12991848281` |
+| `VITE_EMAIL_SERVICE_ID` | `[SEU_EMAIL_SERVICE_ID]` |
+| `VITE_EMAIL_TEMPLATE_ID` | `[SEU_EMAIL_TEMPLATE_ID]` |
+| `VITE_EMAIL_PUBLIC_KEY` | `[SEU_EMAIL_PUBLIC_KEY]` |
+| `VITE_WHATSAPP_NUMBER` | `[SEU_WHATSAPP_NUMBER]` |
 
 ### 2. Secrets (Dados sensíveis)
 1. Vá em: `https://github.com/flameuss/dev-qa-portfolio/settings/secrets/actions`
@@ -41,8 +41,8 @@ VITE_GOOGLE_DRIVE_FOLDER_ID=1ehYbUfiMs8s_7lir8-hZJc7MEfwj-hiV
 
 | Nome | Valor |
 |------|--------|
-| `VITE_GOOGLE_DRIVE_API_KEY` | `AIzaSyA5dmJGZUs3e2RB2YLaI5xiLh7NLwInp9A` |
-| `VITE_GOOGLE_DRIVE_FOLDER_ID` | `1ehYbUfiMs8s_7lir8-hZJc7MEfwj-hiV` |
+| `VITE_GOOGLE_DRIVE_API_KEY` | `[SUA_GOOGLE_DRIVE_API_KEY]` |
+| `VITE_GOOGLE_DRIVE_FOLDER_ID` | `[SUA_GOOGLE_DRIVE_FOLDER_ID]` |
 
 ## ⚠️ IMPORTANTE
 
