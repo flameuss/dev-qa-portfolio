@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
@@ -15,20 +15,13 @@ import { LoadingSpinner } from '@components/ui/LoadingSpinner'
 import { ErrorBoundary } from '@components/common/ErrorBoundary'
 import { AppRouter } from '@components/router/AppRouter'
 
-// Pages (Lazy Loading)
-const Home = React.lazy(() => import('@/pages/Home'))
-const About = React.lazy(() => import('@/pages/About'))
-const Projects = React.lazy(() => import('@/pages/Projects'))
-const Certificates = React.lazy(() => import('@/pages/Certificates'))
-const Contact = React.lazy(() => import('@/pages/Contact'))
-const NotFound = React.lazy(() => import('@/pages/NotFound'))
-
-// Loading Component for Suspense
-const PageLoader: React.FC = () => (
-  <div className="flex min-h-screen items-center justify-center">
-    <LoadingSpinner size="lg" />
-  </div>
-)
+// Pages (Direct imports para resolver build issue)
+import Home from '@/pages/Home'
+import About from '@/pages/About'
+import Projects from '@/pages/Projects'
+import Certificates from '@/pages/Certificates'
+import Contact from '@/pages/Contact'
+import NotFound from '@/pages/NotFound'
 
 // Main App Component
 const App: React.FC = () => {
@@ -44,16 +37,14 @@ const App: React.FC = () => {
               {/* Main Content */}
               <main className="flex-1">
                 <AnimatePresence mode="wait">
-                  <Suspense fallback={<PageLoader />}>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/projects" element={<Projects />} />
-                      <Route path="/certificates" element={<Certificates />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </Suspense>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/certificates" element={<Certificates />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
                 </AnimatePresence>
               </main>
               
